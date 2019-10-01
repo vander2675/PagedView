@@ -1,7 +1,7 @@
 import SwiftUI
 import UIKit
 
-struct PagedView<Element: Identifiable, Page: View>: View {
+public struct PagedView<Element: Identifiable, Page: View>: View {
     
     let transitionStyle: UIPageViewController.TransitionStyle
     let navigationOrientation: UIPageViewController.NavigationOrientation
@@ -10,7 +10,7 @@ struct PagedView<Element: Identifiable, Page: View>: View {
     let objects: [Element]
     let config: (Element) -> Page
     
-    var body: some View {
+    public var body: some View {
         PagedViewController(transitionStyle: transitionStyle, navigationOrientation: navigationOrientation, options: options, objects: objects, config: config)
     }
     
