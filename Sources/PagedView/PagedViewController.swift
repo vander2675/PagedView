@@ -17,7 +17,7 @@ struct PagedViewController<Element: Identifiable, Content: View>: UIViewControll
     }
     
     func updateUIViewController(_ uiViewController: UIPageViewController, context: UIViewControllerRepresentableContext<PagedViewController>) {
-        uiViewController.setViewControllers(context.coordinator.firstViewController(), direction: .forward, animated: false, completion: nil)
+        uiViewController.setViewControllers([context.coordinator.firstViewController()], direction: .forward, animated: false, completion: nil)
     }
     
     func makeCoordinator() -> Coordinator<Element, Content> {
