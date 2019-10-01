@@ -17,7 +17,7 @@ struct PagedViewController<Element: Identifiable, Content: View>: UIViewControll
     }
     
     func updateUIViewController(_ uiViewController: UIPageViewController, context: UIViewControllerRepresentableContext<PagedViewController>) {
-        uiViewController.setViewControllers(nil, direction: .forward, animated: false, completion: nil)
+        uiViewController.setViewControllers(context.coordinator.firstViewController(), direction: .forward, animated: false, completion: nil)
     }
     
     func makeCoordinator() -> Coordinator<Element, Content> {
@@ -29,8 +29,13 @@ struct PagedViewController<Element: Identifiable, Content: View>: UIViewControll
         private let config: (Element) -> Content
         
         init(objects: [Element], config: @escaping (Element) -> Content) {
+            assert(!objects.isEmpty, "Objects need to have at least one Element")
             self.objects = objects
             self.config = config
+        }
+        
+        func firstViewController() -> UIViewController {
+            return ContentViewController(element: objects[0], rootView: config(objects[0]))
         }
         
         func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
