@@ -3,12 +3,12 @@ import UIKit
 
 public struct PagedView<Element: Identifiable, Page: View>: View {
     
-    let transitionStyle: UIPageViewController.TransitionStyle
-    let navigationOrientation: UIPageViewController.NavigationOrientation
-    let options: [UIPageViewController.OptionsKey: Any]?
+    public let transitionStyle: UIPageViewController.TransitionStyle
+    public let navigationOrientation: UIPageViewController.NavigationOrientation
+    public let options: [UIPageViewController.OptionsKey: Any]?
     
-    let objects: [Element]
-    let config: (Element) -> Page
+    public let objects: [Element]
+    public let config: (Element) -> Page
     
     public var body: some View {
         PagedViewController(transitionStyle: transitionStyle, navigationOrientation: navigationOrientation, options: options, objects: objects, config: config)
